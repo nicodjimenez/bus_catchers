@@ -15,7 +15,7 @@ A framework for controlling your browser, can be downloaded at: https://pypi.pyt
 
 2) **Scrapy** 
 
-A framework for web scraping and html parsing.  bus_catchers uses Scrapy's XLM parsing engine extensively.  You can downoad this at: https://pypi.python.org/pypi/Scrapy
+A framework for web scraping and html parsing.  bus_catchers uses Scrapy's XML parsing engine extensively.  You can downoad this at: https://pypi.python.org/pypi/Scrapy
 
 3) **pyvirtualdisplay** (with Xvfb) (*optional, so that firefox runs in the background* )
 
