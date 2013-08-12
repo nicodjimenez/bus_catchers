@@ -42,9 +42,9 @@ The code supports the following features:
 
 1) Extensive logging, automatic emailing of log files (in the crawl_log directory)
 
-2) Direct conversion from parsed html to MySQL insert statements (in the sql_files directory).  The outputs of the scripts are writtent to .sql files.  
-I then use a script (dump_sql.py) to import the .sql files and remove all the loaded queries from the .sql files.
-The script is run periodically at a schedule determined by the cron unix utility program.
+2) 	Direct conversion from parsed html to MySQL insert statements (in the sql_files directory).  The outputs of the scripts are writtent to .sql files.  
+	I then use a script (dump_sql.py) to import the .sql files and remove all the loaded queries from the .sql files.
+	The script is run periodically at a schedule determined by the cron unix utility program.
 
 3) Proxy support.  That way if a site blocks you (this happens a lot with Peterpan) you can just switch to a new proxy and keep scraping.   
 
