@@ -105,7 +105,8 @@ def main():
 		"Printing traceback..."
 		print_exc()
 		
-main()
+if __name__ == '__main__':
+	main()
 
 
 			

@@ -30,13 +30,10 @@ Description
 
 Once dependencies are met the code can be run from the terminal as :: 
 
-	RUN_ME.py medium all 
+	RUN_ME.py short
 
-The "medium" input tells the program how many days in advance to scrape.  The "all" input tells the program to scrape all the websites concurrently.  Since there are 7 websites, this will suck up a lot of your memory! You can also run:: 
-
-	RUN_ME.py medium 1 
-
-which will only the first half of websites.  
+The "short" input tells the program how many days in advance to scrape.  Warning: running this command will launch a web browser for each website to be scraped.  
+This will be done using the multiprocessing python module to run the scripts in parallel.  
 
 The code supports the following features: 
 
