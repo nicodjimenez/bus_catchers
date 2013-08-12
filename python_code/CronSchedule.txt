@@ -1,0 +1,33 @@
+# crontab file
+# m h  dom mon dow   command
+
+# early morning session 
+00 00 * * * cd /home/bestca12/MyProj_2/my_proj_2/python_code && python RUN_ME_old.py medium 1 > ~/terminal_output
+00 02 * * * cd /home/bestca12/MyProj_2/my_proj_2/python_code && python RUN_ME_old.py medium 2 > ~/terminal_output
+
+# early morning make-up sessions
+00 16 * * * cd /home/bestca12/MyProj_2/my_proj_2/python_code && python RUN_ME_old.py makeup 1 > ~/terminal_output
+00 19 * * * cd /home/bestca12/MyProj_2/my_proj_2/python_code && python RUN_ME_old.py makeup 2 > ~/terminal_output
+
+# email alerts 
+00 08 * * * cd /home/bestca12/MyProj_2/my_proj_2/python_code && python email_kit.py
+00 20 * * * cd /home/bestca12/MyProj_2/my_proj_2/python_code && python email_kit.py
+
+# delete old directories 
+00 08 * * * cd /home/bestca12/MyProj_2/my_proj_2/crawl_logs && python daily_cleaner.py
+
+# delete all that command line junk
+50 23 * * * cd /home/bestca12/mail/new && rm -rf ./*
+
+# run mysql insertion script every hour
+55 * * * * cd /home/bestca12/MyProj_2/my_proj_2/python_code && python dump_sql.py
+
+# remove old temp files
+58 23 * * * cd /tmp && rm -rf tmp*
+
+# kill remaining processes
+57 23 * * * killall -9 Xvfb
+57 23 * * * killall -9 firefox
+57 23 * * * killall -9 python
+
+
