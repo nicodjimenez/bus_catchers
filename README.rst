@@ -2,7 +2,7 @@
 bus_catchers 
 =============
 
-bus_catchers" is a experimental web scraping suite to extract schedule data from the bus websites of Bolt Bus, Greyhound, Peterpan, Megabus, Amtrak, and more.  
+**bus_catchers** is a experimental web scraping suite to extract schedule data from the bus websites of Bolt Bus, Greyhound, Peterpan, Megabus, Amtrak, and more.  
 This is the code that allowed http://www.buscatchers.com/ to work before it was shut down for legal reasons.  
 Although the source code is fairly messy, it is fully functional at the present time.  
 At some point, I would like to develop a python framework for extracting data from any website, including websites that use javascript extensively. 
