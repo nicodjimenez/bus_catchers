@@ -52,9 +52,13 @@ The code supports the following features:
 
 The crontab file in the python_code directory shows how the scheduling can be set up.  
 
-.. note::
-	The files need to be run from within python_code, otherwise the outputs of the files 
-	will appear in the wrong directories.    
+Notes 
+------
+The files need to be run from within the python_code directory, otherwise the outputs of the files 
+will appear in the wrong directories.    
+
+The outputs of the scripts are written to sql files with a random integer 1-5 in the file name.  The base 
+file name of the output sql files is established by the :meth:`MyController.BusCatcher.setup_my_logger` method.  
 
 Contact me at nicodjimenez@gmail.com if you have any questions / comments.  
 
