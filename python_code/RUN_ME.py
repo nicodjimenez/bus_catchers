@@ -16,7 +16,6 @@ import get_gobus
 import get_amtrack
 import get_eastern
 from MyDict import *
-import setup_directories
 
 NUM_PROCESS_MAX = 3 
 

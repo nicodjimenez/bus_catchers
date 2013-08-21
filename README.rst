@@ -33,10 +33,20 @@ Description
 
 Once dependencies are met the code can be run from the terminal as :: 
 
-	RUN_ME.py short
+	python RUN_ME.py short
 
 The "short" input tells the program how many days in advance to scrape.  Warning: running this command will launch a web browser for each website to be scraped.  
 This will be done using the multiprocessing python module to run the scripts in parallel.  
+
+In order to try scraping a single website at a time, you may run the scraping scripts by themselves, as::
+	
+	python get_greyhound.py
+
+or, 
+
+	python get_amtrack.py 
+	
+etc. 
 
 The code supports the following features: 
 
@@ -53,14 +63,17 @@ The code supports the following features:
 The crontab file in the python_code directory shows how the scheduling can be set up.  
 
 Notes 
-------
+-------
 The files need to be run from within the python_code directory, otherwise the outputs of the files 
 will appear in the wrong directories.    
 
 The outputs of the scripts are written to sql files with a random integer 1-5 in the file name.  The base 
-file name of the output sql files is established by the :meth:`MyController.BusCatcher.setup_my_logger` method.  
+file name of the output sql files is set by the :meth:`MyController.BusCatcher.setup_my_logger` method. 
 
-Contact me at nicodjimenez@gmail.com if you have any questions / comments.  
+The settings for the scraping are found in MyDict.py.  This file determines whether the scraping is done in the background using pyvirtualdisplay,
+how fast the scraping happens, etc.  
+
+Contact me at nicodjimenez [at] gmail.com if you have any questions / comments.  
 
 
 
