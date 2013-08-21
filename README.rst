@@ -52,6 +52,10 @@ The code supports the following features:
 
 The crontab file in the python_code directory shows how the scheduling can be set up.  
 
+.. note::
+	The files need to be run from within python_code, otherwise the outputs of the files 
+	will appear in the wrong directories.    
+
 Contact me at nicodjimenez@gmail.com if you have any questions / comments.  
 
 

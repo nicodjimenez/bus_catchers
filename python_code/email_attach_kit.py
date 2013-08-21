@@ -1,7 +1,11 @@
+"""
+This script was used to download zip files from my gmail containing proxy 
+lists supplied by HideMyAss.com and then unzip them.  
+"""
+
 import email
-import getpass, imaplib
+import imaplib
 import os
-import sys
 import glob
 import zipfile
 from MyController import BusCatcher
@@ -19,7 +23,7 @@ if not os.path.exists(proxy_dir):
     os.mkdir(proxy_dir)
  
 userName = "buscatchers"
-passwd = "findmybus"
+passwd = "whatismyusername"
 
 def download_attachments():
     try:
@@ -88,23 +92,8 @@ def unzip_proxies():
     zip_file_list = glob.glob(os.path.join(detach_dir,'attachments') + "/*.zip")
     zip_file_list.sort(key=lambda x: os.path.getmtime(x))
     latest_zip = zip_file_list[-1] 
-    zfile = zipfile.ZipFile(latest_zip)
     my_logger.info("Unzipping new proxies: " + str(latest_zip))
-    
-    for name in zfile.namelist()[1:]:
-        (dirname, filename) = os.path.split(name)
-        dirname = os.path.join(proxy_dir,dirname)
-        #my_logger.info("Decompressing " + filename + " on " + dirname)
-      
-        if filename == '':
-            # directory
-            if not os.path.exists(dirname):
-                os.mkdir(dirname)
-        else:
-            # file
-            fd = open(os.path.join(dirname,filename), 'w')
-            fd.write(zfile.read(name))
-            fd.close()
+    zipfile.ZipFile(latest_zip).extractall("./")
 
 def main():
     download_attachments()

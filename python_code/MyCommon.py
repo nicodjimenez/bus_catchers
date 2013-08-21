@@ -281,76 +281,7 @@ class ProxyRotator:
 				pass
 				
 			return 1
-						
-    def old_start_proxy(self):
-		self.proxy_ct=len(proxy_list)
-		self.proxy_error_flag=[0]*self.proxy_ct
-		self.proxy_list=proxy_list
-		self.req_limit=settings_dict['min_req_per_proxy']
-		self.cur_proxy_req=0
-		self.proxy_ind=0	
-		
-		for _ in xrange(0,15):
-			rotate_proxy_flag=self.rotate_proxy(True)
-			if rotate_proxy_flag == 1:
-				self.browser=[]
-			else:
-				break
-			time.sleep(100)
-	
-	# TO DO: depracated, remove soon 
-    def take_screenshot(self):
-		try:
-			now = datetime.datetime.now()
-			now_str=now.strftime("%Y_%m_%d_%H_%M_%S")
-			file_str="../crawl_logs/" + self.company_name + "/run_pics/" + now_str + ".png"
-			self.browser.save_screenshot(file_str)
-		except:
-			pass
-		
-    def _rotate_proxy_old(self):
-		# only rotate if we have an emergency or whether we have abused current IP 
-		self.cur_proxy_req=self.cur_proxy_req+1
-		if (self.cur_proxy_req>self.req_limit) or (do_now==True):
-				
-			# try to close current browser, nbd if that doesn't work 
-			try:
-				self.logger.info("Closing current browser...")
-				self.browser.close()	
-			except:
-				self.logger.debug("Unable to close current browser")
-				pass		
-					
-			for x_ind in range(self.proxy_ind+1,self.proxy_ind+self.proxy_ct+1):			
-					next_ind = x_ind % self.proxy_ct
-					
-					# only load next proxy if we have not "black-listed it"
-					if self.proxy_error_flag[next_ind] == 0:
-						next_proxy=self.proxy_list[next_ind]
-						
-						if next_proxy==None:
-							self.logger.debug("Opening browser - no proxy")
-							self.browser=webdriver.Firefox()
-							self.profile=None
-							self.cur_proxy_req=0
-							self.proxy_ind=next_ind
-							return 0
-						else:
-							self.logger.debug("Opening proxy...")
-							self.delete_profile_dir()
-							self.profile = webdriver.FirefoxProfile()	
-							self.profile.set_preference("network.proxy.type", 1)
-							self.profile.set_preference("network.proxy.http", next_proxy[0])
-							self.profile.set_preference("network.proxy.http_port", int(next_proxy[1]))
-							self.profile.update_preferences()
-							self.browser=webdriver.Firefox(firefox_profile=self.profile)
-							self.cur_proxy_req=0
-							self.proxy_ind=next_ind
-							return 0						
-			return 1
-		else: 
-			return 0 
-		
+
 # note: makeup_id is an integer
 class MakeupTravelContainer:	
 # route id string becomes the MySQL id 

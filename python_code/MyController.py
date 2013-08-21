@@ -2,17 +2,14 @@
 # put all files pertaining to "Master" control here
 from traceback import print_exc
 import random 
-import sys
 import os
 import time
 import datetime
 import logging
-import selenium
 import urllib2
-import socket 
 from httplib import BadStatusLine
 from MyCommon import ProxyRotator,DatabaseHandle
-from MyDict import *
+from MyDict import settings_dict
 
 INCLUDE_PROXIES_DEFAULT = settings_dict['include_proxies'] 
 HIDE_BROWSER_DEFAULT = settings_dict['hide_browser']
@@ -76,7 +73,7 @@ class BusCatcher:
 			while len(self.my_jobs) > 0:
 				cur_job = self.my_jobs[0] 
 				last_request_success = self.my_logic(cur_job)
-                
+				
 				if last_request_success: 
 					self.my_jobs.pop(0)
 				else: 
@@ -230,6 +227,7 @@ class BusCatcher:
 		:param **kwargs: a dictionary of configurations for use in script tasks
 		"""
 		self.setup_my_logger(**kwargs)	
+		self.setup_sql_dir()
 		self.setup_connections(**kwargs)
 		self.get_jobs(**kwargs)
 	
@@ -312,9 +310,21 @@ class BusCatcher:
 					
 			if self.proxy_obj.display:
 				self.proxy_obj.display.stop()
+				
+	def setup_sql_dir(self):
+		"""
+		Makes sql directory where queries will be saved in sql files.  		
+		"""
+		sql_dir =  "../sql_files/" 
+		
+		if not os.path.exists(sql_dir):
+			os.makedirs(sql_dir)
 
 	# TO DO: have better keywork parameters 
 	def setup_my_logger(self,**kwargs):
+		"""
+		Makes logging directory and sets logger instance as attributes of self. 
+		"""
 
 		summary_only = kwargs.get("summary_only",False)
 		logger_name = kwargs.get("logger_name",None)

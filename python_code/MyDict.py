@@ -1,42 +1,32 @@
-# this file has all the settings! 
-#from MySettings import settings_dict
+"""
+This file contains all runtime settings for the scrapers. 
+
+It also contains the data that we wish to scrape. 
+"""
+
 import logging
-import os
 
-cur_dir_str = os.getcwd()
-if "bestca12" in cur_dir_str:
-	run_location = "Server" 
-else:
-	run_location = "Home" 
-
-if run_location == "Home": 
-	settings_dict = {'include_proxies': False,\
-	'hide_browser': False,\
-	'include_database':False,\
-	'include_root_ip': True,\
-	'include_makeup': False,\
-	'log_level': logging.INFO,\
-	'default_timeout': 200,\
-	'min_req_per_proxy': 25,\
-	'max_tries': 4,\
-	'num_processes': 3,\
-	'slowness_factor': 2,\
-	'repeats_per_browser':2, 
-	'log_creds': ['localhost','bestca12_rider','theleonius','bestca12_bus_schedules']}
-elif run_location == "Server": 
-	settings_dict = {'include_proxies': False,\
-	'hide_browser': True,\
-	'include_database':True,\
-	'include_root_ip': True,\
-	'include_makeup': True,\
-	'log_level': logging.INFO,\
-	'default_timeout': 300,\
-	'min_req_per_proxy': 50,\
-	'max_tries': 10,\
-	'num_processes': 3,\
-	'slowness_factor': 2.0,\
-	'repeats_per_browser':3,
-	'log_creds': ['localhost','bestca12_rider','theleonius','bestca12_bus_schedules']}
+settings_dict = {
+				# whether we have a proxy setup
+				'include_proxies': False,\
+				# do we use pyvirtualdisplay
+				'hide_browser': False,\
+				# do we save the outputs of the sql series to a file?
+				'include_database':True,\
+				# only applicable if using proxies
+				'include_root_ip': True,\
+				# do we save a todo list of trips in a makeups database table?
+				'include_makeup': False,\
+				'log_level': logging.INFO,\
+				# time out for get url requests
+				'default_timeout': 200,\
+				# onlu applicable when proxies are being used, failed requests before proxy switch
+				'min_req_per_proxy': 25,\
+				'max_tries': 4,\
+				'num_processes': 3,\
+				'slowness_factor': 2,\
+				'repeats_per_browser':2, 
+				'log_creds': ['localhost','bestca12_rider','theleonius','bestca12_bus_schedules']}
 
 month_dict = { \
  1: 'January', \
@@ -48,7 +38,7 @@ month_dict = { \
  7:'July', \
  8: 'August', \
  9:'September', 10:'October', 11:'November', 12:'December'}
- 
+
 BusID_dict = { \
  'BoltBus': '00', \
  'Greyhound': '01',\
@@ -59,7 +49,7 @@ BusID_dict = { \
  'FungWah':'06',\
  'Amtrak': '07',\
  'EasternTravel':'08'}
- 
+
 CityID_dict = { \
 'Atlantic City, NJ':'12',\
 'Baltimore, MD': '00',\
@@ -259,9 +249,11 @@ eastern_trips = [\
 ['New York, NY','Washington, DC'],\
 ['Washington, DC','New York, NY']]
 
-ct = 0 
-for elem in eastern_trips: 
+ct = 0
+for elem in eastern_trips:
 	elem.append(str(ct))
 	ct += 1 
-
+	
+if __name__ == '__main__':
+	print settings_dict 
 
