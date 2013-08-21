@@ -42,7 +42,7 @@ In order to try scraping a single website at a time, you may run the scraping sc
 	
 	python get_greyhound.py
 
-or, 
+or::
 
 	python get_amtrack.py 
 	
@@ -70,7 +70,7 @@ will appear in the wrong directories.
 The outputs of the scripts are written to sql files with a random integer 1-5 in the file name.  The base 
 file name of the output sql files is set by the :meth:`MyController.BusCatcher.setup_my_logger` method. 
 
-The settings for the scraping are found in MyDict.py.  This file determines whether the scraping is done in the background using pyvirtualdisplay,
+The settings for the scraping are found in python_code/MyDict.py.  This file determines whether the scraping is done in the background using pyvirtualdisplay,
 how fast the scraping happens, etc.  
 
 Contact me at nicodjimenez [at] gmail.com if you have any questions / comments.  
